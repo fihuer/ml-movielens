@@ -21,7 +21,7 @@ class MlDataset ():
                 self.data[s][x]=note
             else:
                 self.data[s] = {x: note}
-    
+
     def filter(self, x, y):
         res = {movie: {user:  self.data[movie][user] for user in self.data[movie] if (user == x or user == y)} for \
 movie in self.data}
@@ -50,7 +50,10 @@ movie in self.data}
                 self.__users.sort()
                 self.__users = self.__users[:limit]
         return self.__users
-        
+
+    @property
+    def size(self):
+        return len(self.users())
+
 if __name__=="__main__":
     print json.dumps(MlDataset("dataset/ml-100k.txt").mean, sort_keys=True, indent=4)
-        
